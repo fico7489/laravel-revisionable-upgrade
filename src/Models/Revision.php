@@ -6,6 +6,7 @@ class Revision extends \Venturecraft\Revisionable\Revision
 {
    public function user()
     {
-        return $this->belongsTo(\Fico7489\Laravel\RevisionableUpgrade\Tests\Models\User::class);
+        $model = \Config::get('revisionable-upgrade.model');
+        return $this->belongsTo($model);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Fico7489\Laravel\RevisionableUpgrade\Tests;
 
+use Fico7489\Laravel\RevisionableUpgrade\Providers\RevisionableUpgradeServiceProvider;
+
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
     public function setUp()
@@ -27,5 +29,10 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
+    }
+    
+    protected function getPackageProviders($app)
+    {
+        return [RevisionableUpgradeServiceProvider::class];
     }
 }
