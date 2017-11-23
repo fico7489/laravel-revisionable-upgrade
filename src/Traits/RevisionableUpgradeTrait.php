@@ -24,6 +24,21 @@ trait RevisionableUpgradeTrait
         return $revision ? $revision->user : null;
     }
     
+    public function revisionCreated()
+    {
+        return $this->getCreateRevision();
+    }
+    
+    public function revisionDeleted()
+    {
+        return $this->getDeletedRevision();
+    }
+    
+    public function revisionUpdated($key = null, $newValue = null, $oldValue = null)
+    {
+        return $this->getUpdatedRevision($key, $newValue, $oldValue);
+    }
+    
     public function dateUpdated($key = null, $newValue = null, $oldValue = null)
     {
         $revision = $this->getUpdatedRevision($key, $newValue, $oldValue);
