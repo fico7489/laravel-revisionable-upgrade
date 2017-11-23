@@ -9,6 +9,7 @@ Upgrade for the venturecraft revisionable package, add many useful methods.
 |-----------------|-------------|-----------| -----------|
 | 5.2.x | 1.2.x | yes | 1.2
 | <5.2 | - | no |
+
 *versions for higher laravel versions comming soon
 
 # How to use
@@ -29,7 +30,7 @@ abstract class BaseModel extends Model
     use RevisionableTrait;
     use RevisionableUpgradeTrait;
     
-    //enable this if you want use methods that gets informations about creating
+    //enable this if you want use methods that gets information about creating
     protected $revisionCreationsEnabled = true;
 ...
 ```
@@ -84,10 +85,11 @@ Returns revisions for model updated
 Returns users for model updated
 
 Clarification for methods with **usersUpdated($key = null, $newValue = null, $oldValue = null)**
-*All options are optional
-*If you provide $key method will only look for changes on that key/field
-*If you provide $newValue method will only look for changes where key/field is changed to this value
-*If you provide $oldValue method will only look for changes where key/field is changed from this value
+
+* All options are optional
+* If you provide $key method will only look for changes on that key/field
+* If you provide $newValue method will only look for changes where key/field is changed to this value
+* If you provide $oldValue method will only look for changes where key/field is changed from this value
 
 We don't need to create and delete methods for **dates** because information about this is stored in created_at and deleted_at.
 We don't need to create and delete methods for **revisions** and **users** because only model can be created or deleted once.
