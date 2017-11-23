@@ -6,6 +6,11 @@ use Fico7489\Laravel\RevisionableUpgrade\Models\Revision;
 
 trait RevisionableUpgradeTrait
 {
+    /*private $primaryKey
+    public function __construct(){
+        
+    }*/
+    
     public function userCreated()
     {
         $revision = $this->getCreateRevision();
@@ -63,8 +68,10 @@ trait RevisionableUpgradeTrait
     }
     
     private function getCreateRevision(){
+        $primaryKey = $this->primaryKey;
+        
         return Revision::where([
-            'revisionable_id' => $this->id,
+            'revisionable_id' => $this->$primaryKey,
             'revisionable_type' => static::class,
             'key' => 'created_at',
             'old_value' => null,
@@ -72,8 +79,10 @@ trait RevisionableUpgradeTrait
     }
     
     private function getDeletedRevision(){
+        $primaryKey = $this->primaryKey;
+        
         return Revision::where([
-            'revisionable_id' => $this->id,
+            'revisionable_id' => $this->$primaryKey,
             'revisionable_type' => static::class,
             'key' => 'deleted_at',
             'old_value' => null,
@@ -81,8 +90,10 @@ trait RevisionableUpgradeTrait
     }
     
     private function getUpdatedRevision($key, $newValue, $oldValue, $first = true){
+        $primaryKey = $this->primaryKey;
+        
         $revision = Revision::where([
-            'revisionable_id' => $this->id,
+            'revisionable_id' => $this->$primaryKey,
             'revisionable_type' => static::class,
         ])->where('key', '<>', 'created_at');
         
