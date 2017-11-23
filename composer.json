@@ -1,5 +1,5 @@
 {
-    "name": "laravel-revisionable-upgrade",
+    "name": "fico7489/laravel-revisionable-upgrade",
     "description": "Upgrade for the venturecraft revisionable package, add many useful methods.",
     "keywords": [
         "laravel revisionable",
