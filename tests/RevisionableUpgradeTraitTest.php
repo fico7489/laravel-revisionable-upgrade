@@ -14,6 +14,8 @@ class RevisionableUpgradeTraitTest extends TestCase
 
         User::create(['name' => 'example@example.com']);
         User::create(['name' => 'example2@example.com']);
+        User::create(['name' => 'example3@example.com']);
+        User::create(['name' => 'example4@example.com']);
 
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'manager']);
@@ -29,5 +31,13 @@ class RevisionableUpgradeTraitTest extends TestCase
         $this->be(User::find(2));
         $user = User::create(['name' => 'test']);
         $this->assertEquals(2, $user->userCreated()->id);
+        
+        $count = \DB::table('revisions')->count();
+        $this->be(User::find(2));
+        $user->update(['name' => 'test5']);
+        $this->assertEquals(2, $user->userCreated()->id);
+        
+        $countNew = \DB::table('revisions')->count();
+        $this->assertEquals(($count + 1), $countNew);
     }
 }
