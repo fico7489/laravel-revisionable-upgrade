@@ -77,7 +77,7 @@ Returns revision for model updated (last revision if there are more)
 
 
 * **dateUpdated($key = null, $newValue = null, $oldValue = null)**
- Returns date for model updated (last revision if there are more)
+Returns date for model updated (last revision if there are more)
 * **revisionsUpdated($key = null, $newValue = null, $oldValue = null)**
 Returns revisions for model updated
 * **usersUpdated($key = null, $newValue = null, $oldValue = null)**
@@ -89,12 +89,12 @@ Clarification for methods with **usersUpdated($key = null, $newValue = null, $ol
 *If you provide $newValue method will only look for changes where key/field is changed to this value
 *If you provide $oldValue method will only look for changes where key/field is changed from this value
 
-We don't need create and delete methods for **dates** because information about this is stored in created_at and deleted_at.
-We don't need create and delete methods for **revisions** and **users** because only model can be created or deleted once.
+We don't need to create and delete methods for **dates** because information about this is stored in created_at and deleted_at.
+We don't need to create and delete methods for **revisions** and **users** because only model can be created or deleted once.
 
 
 # Why this package is usefull ?
-You don't need to add foreign keys (e.g. author_id, created_user_id etc.) to your tables to connect user that edited, deleted or updated this model. You even don't need to use and package beacuse if you already using venturecraft revisionable all informations that you need are already stored in revisions table.
+You don't need to add foreign keys (e.g. author_id, created_user_id etc.) to your tables to connect users that edited, deleted or updated this model. You even don't need to use and package beacause if you are already using venturecraft revisionable all information that you need are already stored in revisions table.
 
 # Improtant notes
 Models where you want use this package must use created_at timestamp
