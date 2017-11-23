@@ -45,6 +45,23 @@ trait RevisionableUpgradeTrait
         return $revision ? $revision->created_at : null;
     }
     
+    public function revisionsUpdated($key = null, $newValue = null, $oldValue = null)
+    {
+        return $this->getUpdatedRevision($key, $newValue, $oldValue, false);
+    }
+    
+    public function usersUpdated($key = null, $newValue = null, $oldValue = null)
+    {
+        $revisions = $this->getUpdatedRevision($key, $newValue, $oldValue, false);
+        $users = collect();
+        foreach($revisions as $revision){
+            if($revision->user){
+                $users->push($revision->user);
+            }
+        }
+        return $users->unique();
+    }
+    
     private function getCreateRevision(){
         return Revision::where([
             'revisionable_id' => $this->id,
@@ -63,7 +80,7 @@ trait RevisionableUpgradeTrait
         ])->first();
     }
     
-    private function getUpdatedRevision($key, $newValue, $oldValue){
+    private function getUpdatedRevision($key, $newValue, $oldValue, $first = true){
         $revision = Revision::where([
             'revisionable_id' => $this->id,
             'revisionable_type' => static::class,
@@ -81,7 +98,13 @@ trait RevisionableUpgradeTrait
             $revision = $revision->where(['old_value' => $oldValue]);
         }
         
-        $revision = $revision->orderBy('created_at', 'desc')->orderBy('id', 'desc')->first();
+        $revision = $revision->orderBy('created_at', 'desc')->orderBy('id', 'desc');
+        
+        if($first){
+            $revision = $revision->first();
+        }else{
+            $revision = $revision->get();
+        }
         
         return $revision;
     }

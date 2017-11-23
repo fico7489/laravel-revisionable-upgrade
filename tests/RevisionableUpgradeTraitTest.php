@@ -112,4 +112,37 @@ class RevisionableUpgradeTraitTest extends TestCase
         $user->update(['name' => 'test2']);
         $this->assertNotNull($user->revisionUpdated());
     }
+    
+    public function test_revisionsUpdated()
+    {
+        $this->be(User::find(2));
+        $user = User::create(['name' => 'test']);
+        $this->assertEquals(0, $user->revisionsUpdated()->count());
+        
+        $user->update(['name' => 'test2']);
+        $this->assertEquals(1, $user->revisionsUpdated()->count());
+        
+        $user->update(['name' => 'test3']);
+        $this->assertEquals(2, $user->revisionsUpdated()->count());
+    }
+    
+    public function test_usersUpdated()
+    {
+        $this->be(User::find(2));
+        $user = User::create(['name' => 'test']);
+        $this->assertEquals(0, $user->usersUpdated()->count());
+        
+        $user->update(['name' => 'test2']);
+        $this->assertEquals(1, $user->usersUpdated()->count());
+        $this->assertEquals(2, $user->usersUpdated()->first()->id);
+        
+        $user->update(['name' => 'test3']);
+        $this->assertEquals(1, $user->usersUpdated()->count());
+        
+        $this->be(User::find(3));
+        $user->update(['name' => 'test4']);
+        $this->assertEquals(2, $user->usersUpdated()->count());
+        $this->assertEquals(3, $user->usersUpdated()->first()->id);
+        $this->assertEquals(2, $user->usersUpdated()->last()->id);
+    }
 }
