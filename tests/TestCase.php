@@ -12,7 +12,6 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->loadMigrationsFrom([
             '--database' => 'testbench',
-            '--realpath' => realpath(__DIR__.'/database/migrations/'),
         ]);
     }
 
@@ -29,6 +28,9 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     
     protected function getPackageProviders($app)
     {
-        return [RevisionableUpgradeServiceProvider::class];
+        return [
+            RevisionableUpgradeServiceProvider::class,
+            ServiceProvider::class,
+        ];
     }
 }
