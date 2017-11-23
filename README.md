@@ -98,6 +98,12 @@ Clarification for methods with **usersUpdated($key = null, $newValue = null, $ol
 We don't need to create and delete methods for **dates** because information about this is stored in created_at and deleted_at.
 We don't need to create and delete methods for **revisions** and **users** because only model can be created or deleted once.
 
+# See some action
+
+```
+$seller = Seller::create(['email' => 'test@test.com']);
+echo 'echo seller with id=' . $seller->id . ' is created by user with id=' . $seller->userCreated()->id;
+```
 
 # Why this package is usefull ?
 You don't need to add foreign keys (e.g. author_id, created_user_id etc.) to your tables to connect users that edited, deleted or updated this model. You even don't need to use and package beacause if you are already using venturecraft revisionable all information that you need are already stored in revisions table.
