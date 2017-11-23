@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Fico7489\\Laravel\\LaravelRevisionableUpgrade\\": "src"
+            "Fico7489\\Laravel\\RevisionableUpgrade\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Fico7489\\Laravel\\LaravelRevisionableUpgrade\\Tests\\": "tests/"
+            "Fico7489\\Laravel\\RevisionableUpgrade\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
