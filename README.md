@@ -105,7 +105,13 @@ protected $revisionCreationsEnabled = true;
 ```
 [See more](https://github.com/VentureCraft/revisionable)
 
+# Tests
 
+All methods are covered with tests. If you run tests clone this package run "composer install" and just run : 
+
+```
+"vendor/bin/phpunit" tests
+```
 
 License
 ----
