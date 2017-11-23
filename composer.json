@@ -1,0 +1,45 @@
+{
+    "name": "laravel-revisionable-upgrade",
+    "description": "Upgrade for the venturecraft revisionable package, add many useful methods.",
+    "keywords": [
+        "laravel revisionable",
+        "laravel revisionable package",
+        "laravel revisionable venturecraft",
+        "laravel revisionable venturecraft upgrade",
+        "laravel"
+    ],
+    "homepage": "https://github.com/fico7489/laravel-revisionable-upgrade",
+    "support": {
+        "issues": "https://github.com/fico7489/laravel-revisionable-upgrade/issues",
+        "source": "https://github.com/fico7489/laravel-revisionable-upgrade"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Filip Horvat",
+            "email": "filip.horvat@am2studio.hr",
+            "homepage": "http://am2studio.hr",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/database": "5.2.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9",
+        "orchestra/testbench": "~3.2.0",
+        "orchestra/database": "~3.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fico7489\\Laravel\\LaravelRevisionableUpgrade\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fico7489\\Laravel\\LaravelRevisionableUpgrade\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
