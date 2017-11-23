@@ -36,9 +36,21 @@ class RevisionableUpgradeTraitTest extends TestCase
         $this->assertEquals(($count + 1), $countNew);
     }
     
+    public function test_userDeleted()
+    {
+        $this->be(User::find(1));
+        $user = User::create(['name' => 'test']);
+        $user->delete();
+        $this->assertEquals(1, $user->userDeleted()->id);
+        
+        $user = User::create(['name' => 'test']);
+        $this->be(User::find(2));
+        $user->delete();
+        $this->assertEquals(2, $user->userDeleted()->id);
+    }
+    
     public function test_userUpdatedWithoutParams()
     {
-        
         $this->be(User::find(1));
         $user = User::create(['name' => 'test']);
         
@@ -62,6 +74,8 @@ class RevisionableUpgradeTraitTest extends TestCase
         $this->assertEquals(null, $user->userUpdated('namee'));
         $this->assertEquals(null, $user->userUpdated('name', 'test9'));
         $this->assertEquals(null, $user->userUpdated('name', 'test7', 'test9'));
-        
     }
+    
+    
+    
 }

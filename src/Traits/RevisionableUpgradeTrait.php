@@ -22,6 +22,22 @@ trait RevisionableUpgradeTrait
         return null;
     }
     
+    public function userDeleted()
+    {
+        $revision = Revision::where([
+            'revisionable_id' => $this->id,
+            'revisionable_type' => static::class,
+            'key' => 'deleted_at',
+            'old_value' => null,
+        ])->first();
+
+        if ($revision) {
+            return $revision->user;
+        }
+
+        return null;
+    }
+    
     public function userUpdated($key = null, $newValue = null, $oldValue = null)
     {
         $revision = Revision::where([

@@ -21,6 +21,7 @@ class CreateDatabase extends Migration
             $table->string('name');
 
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('users', function (Blueprint $table) {
@@ -29,6 +30,7 @@ class CreateDatabase extends Migration
             $table->string('email')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
