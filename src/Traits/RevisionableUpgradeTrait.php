@@ -24,6 +24,12 @@ trait RevisionableUpgradeTrait
         return $revision ? $revision->user : null;
     }
     
+    public function dateUpdated($key = null, $newValue = null, $oldValue = null)
+    {
+        $revision = $this->getUpdatedRevision($key, $newValue, $oldValue);
+        return $revision ? $revision->created_at : null;
+    }
+    
     private function getCreateRevision(){
         return Revision::where([
             'revisionable_id' => $this->id,
@@ -46,7 +52,7 @@ trait RevisionableUpgradeTrait
         $revision = Revision::where([
             'revisionable_id' => $this->id,
             'revisionable_type' => static::class,
-        ]);
+        ])->where('key', '<>', 'created_at');
         
         if ($key !== null) {
             $revision = $revision->where(['key' => $key]);

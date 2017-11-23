@@ -76,6 +76,14 @@ class RevisionableUpgradeTraitTest extends TestCase
         $this->assertEquals(null, $user->userUpdated('name', 'test7', 'test9'));
     }
     
-    
+    public function test_dateUpdated()
+    {
+        $this->be(User::find(1));
+        $user = User::create(['name' => 'test']);
+        $this->assertNull($user->dateUpdated());
+        
+        $user->update(['name' => 'test2']);
+        $this->assertNotNull($user->dateUpdated());
+    }
     
 }
