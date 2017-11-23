@@ -34,6 +34,10 @@ class RevisionableUpgradeTraitTest extends TestCase
         
         $countNew = \DB::table('revisions')->count();
         $this->assertEquals(($count + 1), $countNew);
+        
+        $this->be(User::find(2));
+        $user->update(['name' => 'test5']);
+        $this->assertEquals(2, $user->userCreated()->id);
     }
     
     public function test_userDeleted()
