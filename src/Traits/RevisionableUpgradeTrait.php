@@ -8,38 +8,41 @@ trait RevisionableUpgradeTrait
 {
     public function userCreated()
     {
-        $revision = Revision::where([
+        $revision = $this->getCreateRevision();
+        return $revision ? $revision->user : null;
+    }
+    
+    public function userDeleted()
+    {
+        $revision = $this->getDeletedRevision();
+        return $revision ? $revision->user : null;
+    }
+    
+    public function userUpdated($key = null, $newValue = null, $oldValue = null)
+    {
+        $revision = $this->getUpdatedRevision($key, $newValue, $oldValue);
+        return $revision ? $revision->user : null;
+    }
+    
+    private function getCreateRevision(){
+        return Revision::where([
             'revisionable_id' => $this->id,
             'revisionable_type' => static::class,
             'key' => 'created_at',
             'old_value' => null,
         ])->first();
-
-        if ($revision) {
-            return $revision->user;
-        }
-
-        return null;
     }
     
-    public function userDeleted()
-    {
-        $revision = Revision::where([
+    private function getDeletedRevision(){
+        return Revision::where([
             'revisionable_id' => $this->id,
             'revisionable_type' => static::class,
             'key' => 'deleted_at',
             'old_value' => null,
         ])->first();
-
-        if ($revision) {
-            return $revision->user;
-        }
-
-        return null;
     }
     
-    public function userUpdated($key = null, $newValue = null, $oldValue = null)
-    {
+    private function getUpdatedRevision($key, $newValue, $oldValue){
         $revision = Revision::where([
             'revisionable_id' => $this->id,
             'revisionable_type' => static::class,
@@ -58,11 +61,7 @@ trait RevisionableUpgradeTrait
         }
         
         $revision = $revision->orderBy('created_at', 'desc')->orderBy('id', 'desc')->first();
-
-        if ($revision) {
-            return $revision->user;
-        }
-
-        return null;
+        
+        return $revision;
     }
 }
