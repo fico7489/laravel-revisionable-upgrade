@@ -1,6 +1,6 @@
 <?php
 
-namespace Fico7489\Laravel\Pivot\Tests;
+namespace Fico7489\Laravel\RevisionableUpgrade\Tests;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {

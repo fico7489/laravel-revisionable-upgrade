@@ -1,13 +1,14 @@
 <?php
 
-namespace Fico7489\Laravel\Pivot\Tests\Models;
+namespace Fico7489\Laravel\RevisionableUpgrade\Tests\Models;
 
-use Fico7489\Laravel\Pivot\Traits\PivotEventTrait;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends BaseModel
+class User extends BaseModel implements AuthenticatableContract
 {
-    use PivotEventTrait;
-
+    use Authenticatable;
+    
     protected $table = 'users';
 
     protected $fillable = ['name'];

@@ -23,7 +23,8 @@
         }
     ],
     "require": {
-        "illuminate/database": "5.2.*"
+        "illuminate/database": "5.2.*",
+        "venturecraft/revisionable": "1.*"
     },
     "require-dev": {
         "mockery/mockery": "^0.9",

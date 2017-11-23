@@ -1,6 +1,6 @@
 <?php
 
-namespace Fico7489\Laravel\Pivot\Tests\Models;
+namespace Fico7489\Laravel\RevisionableUpgrade\Tests\Models;
 
 class Role extends BaseModel
 {
