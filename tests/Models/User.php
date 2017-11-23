@@ -11,7 +11,7 @@ class User extends BaseModel implements AuthenticatableContract
     
     protected $table = 'users';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'email'];
 
     public function roles()
     {
