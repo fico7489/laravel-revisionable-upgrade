@@ -14,7 +14,7 @@ trait RevisionableUpgradeTrait
     public function userCreated()
     {
         $revision = $this->getCreateRevision();
-        return $revision ? $revision->user : null;
+        return $revision ? $revision->revisionUser : null;
     }
 
     /**
@@ -25,7 +25,7 @@ trait RevisionableUpgradeTrait
     public function userDeleted()
     {
         $revision = $this->getDeletedRevision();
-        return $revision ? $revision->user : null;
+        return $revision ? $revision->revisionUser : null;
     }
 
     /**
@@ -39,7 +39,7 @@ trait RevisionableUpgradeTrait
     public function userUpdated($key = null, $newValue = null, $oldValue = null)
     {
         $revision = $this->getUpdatedRevision($key, $newValue, $oldValue);
-        return $revision ? $revision->user : null;
+        return $revision ? $revision->revisionUser : null;
     }
 
     /**
@@ -115,8 +115,8 @@ trait RevisionableUpgradeTrait
         $revisions = $this->getUpdatedRevision($key, $newValue, $oldValue, false);
         $users = collect();
         foreach ($revisions as $revision) {
-            if ($revision->user) {
-                $users->push($revision->user);
+            if ($revision->revisionUser) {
+                $users->push($revision->revisionUser);
             }
         }
         return $users->unique();
