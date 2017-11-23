@@ -10,14 +10,10 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         parent::setUp();
 
-        $this->artisan('migrate', ['--database' => 'testbench']);
-
-        $migrator = $this->app->make('migrator');
-        $migrator->run(__DIR__.'/database/migrations/');
-
-        $this->beforeApplicationDestroyed(function () {
-            $this->artisan('migrate:rollback');
-        });
+        $this->loadMigrationsFrom([
+            '--database' => 'testbench',
+            '--realpath' => realpath(__DIR__.'/database/migrations/'),
+        ]);
     }
 
     protected function getEnvironmentSetUp($app)

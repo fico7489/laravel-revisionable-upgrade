@@ -7,6 +7,7 @@ Upgrade for the venturecraft revisionable package, add many useful methods.
 
 | Laravel Version | Package Tag | Supported | Development Branch
 |-----------------|-------------|-----------| -----------|
+| 5.3.x | 1.3.x | yes | 1.3
 | 5.2.x | 1.2.x | yes | 1.2
 | <5.2 | - | no |
 
@@ -41,7 +42,8 @@ Fico7489\Laravel\RevisionableUpgrade\Providers\RevisionableUpgradeServiceProvide
 ```
 to config/app.php and run : 
 ```
-php artisan vendor:publish  --provider="Fico7489\Laravel\RevisionableUpgrade\Providers\RevisionableUpgradeServiceProvider"
+php artisan vendor:publish 
+    --provider="Fico7489\Laravel\RevisionableUpgrade\Providers\RevisionableUpgradeServiceProvider"
 ```
 
 4.Update config/revisionable-upgrade.php, change model to class that represent **user** in your app (model that implements AuthenticatableContract), probably something like : 

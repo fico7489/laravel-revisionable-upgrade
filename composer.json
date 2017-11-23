@@ -23,13 +23,13 @@
         }
     ],
     "require": {
-        "illuminate/database": "5.2.*",
+        "illuminate/database": "5.3.*",
         "venturecraft/revisionable": "1.*"
     },
     "require-dev": {
         "mockery/mockery": "^0.9",
-        "orchestra/testbench": "3.2.*",
-        "orchestra/database": "3.2.*",
+        "orchestra/testbench": "3.3.*",
+        "orchestra/database": "3.3.*",
         "phpunit/phpunit": "~4.8|~5.0"
     },
     "autoload": {
