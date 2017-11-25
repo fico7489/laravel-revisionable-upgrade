@@ -8,12 +8,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         //register
     }
+    
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/database/migrations/');
     }
         
-    private function loadMigrationsFrom($path)
+    protected function loadMigrationsFrom($path)
     {
         \Artisan::call('migrate', ['--database' => 'testbench']);
         $migrator = $this->app->make('migrator');
