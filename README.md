@@ -35,29 +35,11 @@ abstract class BaseModel extends Model
 ...
 ```
 
-3.Add service provider 
-```
-Fico7489\Laravel\RevisionableUpgrade\Providers\RevisionableUpgradeServiceProvider::class,
-```
-to config/app.php and run : 
-```
-php artisan vendor:publish  --provider="Fico7489\Laravel\RevisionableUpgrade\Providers\RevisionableUpgradeServiceProvider"
-```
-
-4.Update config/revisionable-upgrade.php, change model to class that represent **user** in your app (model that implements AuthenticatableContract), probably something like : 
-```
-return [
-    'model' => App\Models\User::class,
-];
-```
-or
-```
-return [
-    'model' => App\Auth\User::class,
-];
-```
-
 and that's it, you are ready to go.
+
+# Why to use
+
+Yeah, revisionable package has userResponsible () method, but that is not enough and we can use saved revisions for much more useful stuff. We can find out who created and deleted model, who edited model, when the model was edited and much more. See below for more information.
 
 # New methods
 
@@ -93,10 +75,11 @@ Clarification for methods with **usersUpdated($key = null, $newValue = null, $ol
 
 We don't need to create and delete methods for **dates** because information about this is stored in created_at and deleted_at.
 We don't need to create and delete methods for **revisions** and **users** because only model can be created or deleted once.
+Methods which returns **user** and **users** are using model from **auth.model** configuration.
 
 
 # Why this package is usefull ?
-You don't need to add foreign keys (e.g. author_id, created_user_id etc.) to your tables to connect users that edited, deleted or updated this model. You even don't need to use and package beacause if you are already using venturecraft revisionable all information that you need are already stored in revisions table.
+You don't need to add foreign keys (e.g. author_id, created_user_id etc.) to your tables to connect users that edited, deleted or updated this model. You even don't need to use any package beacause if you are already using venturecraft revisionable all information that you need are already stored in revisions table.
 
 # Improtant notes
 Models where you want use this package must use created_at timestamp
