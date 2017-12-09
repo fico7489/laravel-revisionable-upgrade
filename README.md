@@ -1,21 +1,28 @@
 # Laravel revisionable upgrade
 
-Upgrade for the venturecraft revisionable package, add many useful methods. 
-[Venturecraft Revisionable](https://github.com/VentureCraft/revisionable)
+Upgrade for the [Venturecraft Revisionable](https://github.com/VentureCraft/revisionable) package,  many useful methods are added. 
 
-# Laravel versions
+## Why to use
 
-| Laravel Version | Package Tag | Supported | Development Branch
-|-----------------|-------------|-----------| -----------|
-| 5.5.x | 2.1.x | yes | master
-| 5.4.x | 2.0.x | yes | 2.0
-| 5.3.x | 1.3.x | yes | 1.3
-| 5.2.x | 1.2.x | yes | 1.2
-| <5.2 | - | no |
+Yeah, revisionable package has userResponsible () method, but that is not enough and we can use saved revisions for much more useful stuff. We can find out who created, deleted and edited model, when the model was edited, when exact attribute from the model was edited and much more. 
 
-*versions for higher laravel versions comming soon
+You don't need to add **updated_by**, **deleted_by**, **created_by** to your tables.
+You don't need to add **updated_atribute_by** to your tables.
+You don't need to add **updated_atribute_to_value_by** to your tables.
+You don't need to add **updated_atribute_from_value_to_value_by** to your tables.
+You don't need to add **updated_atribute_at** to your tables.
+You don't need to add **updated_atribute_to_value_at** to your tables.
+You don't need to add **updated_atribute_from_value_to_value_at** to your tables.
+You don't need  **author_id**, **created_user_id**, **deleted_user_id** etc. or anything like that
+etc.
 
-# How to use
+Don't pollute your tables with above table columns in the database, all above information is already stored in revisions table we just need the ability to get them, and this package will help you with that.
+
+## Version Compatibility
+
+The package is available for larvel 5.* versions
+
+## Install
 
 1.Install package with composer
 ```
@@ -40,11 +47,7 @@ abstract class BaseModel extends Model
 
 and that's it, you are ready to go.
 
-# Why to use
-
-Yeah, revisionable package has userResponsible () method, but that is not enough and we can use saved revisions for much more useful stuff. We can find out who created and deleted model, who edited model, when the model was edited and much more. See below for more information.
-
-# New methods
+## New methods
 
 * **userCreated()**
 Returns user which created this model
@@ -69,28 +72,26 @@ Returns revisions for model updated
 * **usersUpdated($key = null, $newValue = null, $oldValue = null)**
 Returns users for model updated
 
-Clarification for methods with **usersUpdated($key = null, $newValue = null, $oldValue = null)**
+Clarification for methods with **($key = null, $newValue = null, $oldValue = null)**
 
-* All options are optional
-* If you provide $key method will only look for changes on that key/field
-* If you provide $newValue method will only look for changes where key/field is changed to this value
-* If you provide $oldValue method will only look for changes where key/field is changed from this value
+* All parameters are optional
+* If you provide $key method will look for changes on that key/field
+* If you provide $newValue method will look for changes where key/field is changed to this value
+* If you provide $oldValue method will look for changes where key/field is changed from this value
 
-We don't need to create and delete methods for **dates** because information about this is stored in created_at and deleted_at.
-We don't need to create and delete methods for **revisions** and **users** because only model can be created or deleted once.
+We don't need **dateCreated** and **dateDeleted** because information about this is stored in created_at and deleted_at.
+We don't need **revisionsCreated**, **revisionsDeleted**, **usersCreated**, **usersDeleted** because model can be created or deleted only once.
 Methods which returns **user** and **users** are using model from **auth.model** configuration.
 
-# See some action
+## See some action
 
 ```
 $seller = Seller::create(['email' => 'test@test.com']);
 echo 'echo seller with id=' . $seller->id . ' is created by user with id=' . $seller->userCreated()->id;
 ```
 
-# Why this package is usefull ?
-You don't need to add foreign keys (e.g. author_id, created_user_id etc.) to your tables to connect users that edited, deleted or updated this model. You even don't need to use any package beacause if you are already using venturecraft revisionable all information that you need are already stored in revisions table.
 
-# Improtant notes
+## Improtant notes
 Models where you want use this package must use created_at timestamp
 
 If you want fetch users that have deleted models you must enable $revisionCreationsEnabled
@@ -99,13 +100,6 @@ protected $revisionCreationsEnabled = true;
 ```
 [See more](https://github.com/VentureCraft/revisionable)
 
-# Tests
-
-All methods are covered with tests. If you run tests clone this package run "composer install" and just run : 
-
-```
-"vendor/bin/phpunit" tests
-```
 
 License
 ----
