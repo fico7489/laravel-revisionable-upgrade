@@ -14,7 +14,6 @@ Yeah, revisionable package has userResponsible () method, but that is not enough
 * You don't need to add **updated_atribute_to_value_at** to your tables.  
 * You don't need to add **updated_atribute_from_value_to_value_at** to your tables.  
 * You don't need  **author_id**, **created_user_id**, **deleted_user_id** etc. or anything like that  
-etc.
 
 Don't pollute your tables with above table columns in the database, all above information is already stored in revisions table we just need the ability to get them, and this package will help you with that.
 
