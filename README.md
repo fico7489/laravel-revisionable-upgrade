@@ -28,6 +28,7 @@ The package is available for larvel 5.* versions
 ```
 composer require fico7489/laravel-revisionable-upgrade:"*"
 ```
+
 2.Use Fico7489\Laravel\RevisionableUpgrade\Traits\RevisionableUpgradeTrait trait in your base model or only in particular models. Model which use RevisionableUpgradeTrait must also use RevisionableTrait;
 
 ```
@@ -66,7 +67,7 @@ Returns revision for model updated (last revision if there are more)
 
 
 * **dateUpdated($key = null, $newValue = null, $oldValue = null)**
-Returns date for model updated (last revision if there are more)
+Returns date(Carbon\Carbon) for model updated (last revision if there are more)
 * **revisionsUpdated($key = null, $newValue = null, $oldValue = null)**
 Returns revisions for model updated
 * **usersUpdated($key = null, $newValue = null, $oldValue = null)**
@@ -87,7 +88,42 @@ Methods which returns **user** and **users** are using model from **auth.model**
 
 ```
 $seller = Seller::create(['email' => 'test@test.com']);
-echo 'echo seller with id=' . $seller->id . ' is created by user with id=' . $seller->userCreated()->id;
+
+//get user who edited model
+$seller->userCreated();
+
+//get user who deleted model
+$seller->userDeleted();
+
+//get user who updated model
+$seller->userUpdated();
+
+//get user who updated attribute name in model
+$seller->userUpdated('name');
+
+//get user who updated attribute name value to 'new_name'
+$seller->userUpdated('name', 'new_name');
+
+//get user who updated attribute name value to 'new_name' value from 'old_name' value
+$seller->userUpdated('name', 'new_name',  'old_name');
+
+//get revision model for create
+$seller->revisionCreated();
+
+//get revision model for delete
+$seller->revisionDeleted();
+
+//get revision model for update
+$seller->revisionUpdated();
+
+//get date for update
+$seller->dateUpdated();
+
+//get revisions for update
+$seller->revisionsUpdated();
+
+//get users for update
+$seller->usersUpdated();
 ```
 
 
