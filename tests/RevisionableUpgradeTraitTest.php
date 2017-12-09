@@ -3,7 +3,6 @@
 namespace Fico7489\Laravel\RevisionableUpgrade\Tests;
 
 use Fico7489\Laravel\RevisionableUpgrade\Tests\Models\User;
-use Illuminate\Database\Eloquent\Model;
 
 class RevisionableUpgradeTraitTest extends TestCase
 {

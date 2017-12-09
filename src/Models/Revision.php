@@ -10,7 +10,7 @@ class Revision extends \Venturecraft\Revisionable\Revision
     {
         $model = \Config::get('auth.model');
         $relation = $this->belongsTo($model, 'user_id');
-        if($this->classUseTrait($model, SoftDeletes::class)){
+        if ($this->classUseTrait($model, SoftDeletes::class)) {
             $relation = $relation->withTrashed();
         }
         return $this->belongsTo($model, 'user_id');

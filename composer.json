@@ -2,11 +2,11 @@
     "name": "fico7489/laravel-revisionable-upgrade",
     "description": "Upgrade for the venturecraft revisionable package, add many useful methods.",
     "keywords": [
-        "laravel revisionable",
-        "laravel revisionable package",
-        "laravel revisionable venturecraft",
-        "laravel revisionable venturecraft upgrade",
-        "laravel"
+        "laravel revisionable upgrade",
+        "laravel updated_by ",
+        "laravel deleted_by",
+        "laravel created_by",
+        "laravel updated_at by key"
     ],
     "homepage": "https://github.com/fico7489/laravel-revisionable-upgrade",
     "support": {
@@ -23,14 +23,11 @@
         }
     ],
     "require": {
-        "illuminate/database": "5.5.*",
+        "illuminate/database": "5.*",
         "venturecraft/revisionable": "1.*"
     },
     "require-dev": {
-        "mockery/mockery": "^0.9",
-        "orchestra/testbench": "3.5.*",
-        "orchestra/database": "3.5.*",
-        "phpunit/phpunit": "6.*"
+        "orchestra/testbench": "3.5.*"
     },
     "autoload": {
         "psr-4": {

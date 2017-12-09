@@ -2,7 +2,7 @@
 
 namespace Fico7489\Laravel\RevisionableUpgrade\Tests\Models;
 
-class Role extends BaseModel
+class Seller extends BaseModel
 {
     protected $table = 'sellers';
 
