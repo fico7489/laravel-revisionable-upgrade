@@ -6,14 +6,14 @@ Upgrade for the [Venturecraft Revisionable](https://github.com/VentureCraft/revi
 
 Yeah, revisionable package has userResponsible () method, but that is not enough and we can use saved revisions for much more useful stuff. We can find out who created, deleted and edited model, when the model was edited, when exact attribute from the model was edited and much more. 
 
-You don't need to add **updated_by**, **deleted_by**, **created_by** to your tables.
-You don't need to add **updated_atribute_by** to your tables.
-You don't need to add **updated_atribute_to_value_by** to your tables.
-You don't need to add **updated_atribute_from_value_to_value_by** to your tables.
-You don't need to add **updated_atribute_at** to your tables.
-You don't need to add **updated_atribute_to_value_at** to your tables.
-You don't need to add **updated_atribute_from_value_to_value_at** to your tables.
-You don't need  **author_id**, **created_user_id**, **deleted_user_id** etc. or anything like that
+You don't need to add **updated_by**, **deleted_by**, **created_by** to your tables.  
+You don't need to add **updated_atribute_by** to your tables.  
+You don't need to add **updated_atribute_to_value_by** to your tables.  
+You don't need to add **updated_atribute_from_value_to_value_by** to your tables.  
+You don't need to add **updated_atribute_at** to your tables.  
+You don't need to add **updated_atribute_to_value_at** to your tables.  
+You don't need to add **updated_atribute_from_value_to_value_at** to your tables.  
+You don't need  **author_id**, **created_user_id**, **deleted_user_id** etc. or anything like that  
 etc.
 
 Don't pollute your tables with above table columns in the database, all above information is already stored in revisions table we just need the ability to get them, and this package will help you with that.
