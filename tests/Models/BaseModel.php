@@ -10,6 +10,6 @@ class BaseModel extends Model
 {
     use RevisionableUpgradeTrait;
     use RevisionableTrait;
-    
+
     protected $revisionCreationsEnabled = true;
 }

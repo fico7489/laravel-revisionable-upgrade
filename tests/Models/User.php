@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends BaseModel implements AuthenticatableContract
 {
     use Authenticatable, SoftDeletes;
-    
+
     protected $table = 'users';
 
     protected $fillable = ['name', 'email'];

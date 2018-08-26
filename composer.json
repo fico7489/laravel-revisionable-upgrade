@@ -27,7 +27,8 @@
         "venturecraft/revisionable": "1.*"
     },
     "require-dev": {
-        "orchestra/testbench": "3.5.*"
+        "orchestra/testbench": "3.*",
+        "friendsofphp/php-cs-fixer" : "2.*"
     },
     "autoload": {
         "psr-4": {

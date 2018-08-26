@@ -7,43 +7,47 @@ use Fico7489\Laravel\RevisionableUpgrade\Models\Revision;
 trait RevisionableUpgradeTrait
 {
     /**
-     * Returns user which created this model
+     * Returns user which created this model.
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function userCreated()
     {
         $revision = $this->getCreateRevision();
+
         return $revision ? $revision->revisionUser : null;
     }
 
     /**
-     * Returns user which deleted this model
+     * Returns user which deleted this model.
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function userDeleted()
     {
         $revision = $this->getDeletedRevision();
+
         return $revision ? $revision->revisionUser : null;
     }
 
     /**
-     * Returns user which updated this model (last user if there are more)
+     * Returns user which updated this model (last user if there are more).
      *
-     * @param  string|null $key
-     * @param  string|null $newValue
-     * @param  string|null $oldValue
+     * @param string|null $key
+     * @param string|null $newValue
+     * @param string|null $oldValue
+     *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function userUpdated($key = null, $newValue = null, $oldValue = null)
     {
         $revision = $this->getUpdatedRevision($key, $newValue, $oldValue);
+
         return $revision ? $revision->revisionUser : null;
     }
 
     /**
-     * Returns revision for model created
+     * Returns revision for model created.
      *
      * @return \Fico7489\Laravel\RevisionableUpgrade\Models\Revision|null
      */
@@ -53,7 +57,7 @@ trait RevisionableUpgradeTrait
     }
 
     /**
-     * Returns revision for model deleted
+     * Returns revision for model deleted.
      *
      * @return \Fico7489\Laravel\RevisionableUpgrade\Models\Revision|null
      */
@@ -63,11 +67,12 @@ trait RevisionableUpgradeTrait
     }
 
     /**
-     * Returns revision for model updated (last revision if there are more)
+     * Returns revision for model updated (last revision if there are more).
      *
-     * @param  string|null $key
-     * @param  string|null $newValue
-     * @param  string|null $oldValue
+     * @param string|null $key
+     * @param string|null $newValue
+     * @param string|null $oldValue
+     *
      * @return \Fico7489\Laravel\RevisionableUpgrade\Models\Revision|null
      */
     public function revisionUpdated($key = null, $newValue = null, $oldValue = null)
@@ -76,25 +81,28 @@ trait RevisionableUpgradeTrait
     }
 
     /**
-     * Returns date for model updated (last revision if there are more)
+     * Returns date for model updated (last revision if there are more).
      *
-     * @param  string|null $key
-     * @param  string|null $newValue
-     * @param  string|null $oldValue
+     * @param string|null $key
+     * @param string|null $newValue
+     * @param string|null $oldValue
+     *
      * @return \Carbon\Carbon|string|null
      */
     public function dateUpdated($key = null, $newValue = null, $oldValue = null)
     {
         $revision = $this->getUpdatedRevision($key, $newValue, $oldValue);
+
         return $revision ? $revision->created_at : null;
     }
 
     /**
-     * Returns revisions for model updated
+     * Returns revisions for model updated.
      *
-     * @param  string|null $key
-     * @param  string|null $newValue
-     * @param  string|null $oldValue
+     * @param string|null $key
+     * @param string|null $newValue
+     * @param string|null $oldValue
+     *
      * @return \Illuminate\Support\Collection
      */
     public function revisionsUpdated($key = null, $newValue = null, $oldValue = null)
@@ -103,11 +111,12 @@ trait RevisionableUpgradeTrait
     }
 
     /**
-     * Returns users for model updated
+     * Returns users for model updated.
      *
-     * @param  string|null $key
-     * @param  string|null $newValue
-     * @param  string|null $oldValue
+     * @param string|null $key
+     * @param string|null $newValue
+     * @param string|null $oldValue
+     *
      * @return \Illuminate\Support\Collection
      */
     public function usersUpdated($key = null, $newValue = null, $oldValue = null)
@@ -119,6 +128,7 @@ trait RevisionableUpgradeTrait
                 $users->push($revision->revisionUser);
             }
         }
+
         return $users->unique();
     }
 
@@ -155,15 +165,15 @@ trait RevisionableUpgradeTrait
             'revisionable_type' => static::class,
         ])->where('key', '<>', 'created_at');
 
-        if ($key !== null) {
+        if (null !== $key) {
             $revision = $revision->where(['key' => $key]);
         }
 
-        if ($newValue !== null) {
+        if (null !== $newValue) {
             $revision = $revision->where(['new_value' => $newValue]);
         }
 
-        if ($oldValue !== null) {
+        if (null !== $oldValue) {
             $revision = $revision->where(['old_value' => $oldValue]);
         }
 

@@ -13,12 +13,14 @@ class Revision extends \Venturecraft\Revisionable\Revision
         if ($this->classUseTrait($model, SoftDeletes::class)) {
             $relation = $relation->withTrashed();
         }
+
         return $this->belongsTo($model, 'user_id');
     }
-    
+
     private function classUseTrait($model, $trait)
     {
         $traits = class_uses($model);
+
         return isset($traits[$trait]) ? true : false;
     }
 }
