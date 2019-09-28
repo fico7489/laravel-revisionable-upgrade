@@ -6,7 +6,7 @@ use Fico7489\Laravel\RevisionableUpgrade\Tests\Models\User;
 
 class RevisionableUpgradeTraitTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
