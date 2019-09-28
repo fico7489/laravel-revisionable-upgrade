@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends BaseModel implements AuthenticatableContract
 {
-    use Authenticatable, SoftDeletes;
+    use Authenticatable;
+    use SoftDeletes;
 
     protected $table = 'users';
 
