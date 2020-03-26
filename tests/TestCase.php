@@ -15,9 +15,9 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         $app['config']->set('auth.model', \Fico7489\Laravel\RevisionableUpgrade\Tests\Models\User::class);
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 
