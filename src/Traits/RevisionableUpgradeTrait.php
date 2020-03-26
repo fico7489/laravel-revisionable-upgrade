@@ -138,7 +138,7 @@ trait RevisionableUpgradeTrait
 
         return Revision::where([
             'revisionable_id' => $this->$primaryKey,
-            'revisionable_type' => static::class,
+            'revisionable_type' => $this->getMorphClass(),
             'key' => 'created_at',
             'old_value' => null,
         ])->first();
@@ -150,7 +150,7 @@ trait RevisionableUpgradeTrait
 
         return Revision::where([
             'revisionable_id' => $this->$primaryKey,
-            'revisionable_type' => static::class,
+            'revisionable_type' => $this->getMorphClass(),
             'key' => 'deleted_at',
             'old_value' => null,
         ])->first();
@@ -162,7 +162,7 @@ trait RevisionableUpgradeTrait
 
         $revision = Revision::where([
             'revisionable_id' => $this->$primaryKey,
-            'revisionable_type' => static::class,
+            'revisionable_type' => $this->getMorphClass(),
         ])->where('key', '<>', 'created_at');
 
         if (null !== $key) {
